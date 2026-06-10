@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Boogly Studio – Echte Menschen. Echte Meinungen.</title>
-<meta name="description" content="Boogly Studio ist Deutschlands neues Gesprächsformat. Echte Menschen, echte Perspektiven – über Politik, Dating, Ernährung und das Leben."/>
+<title>Boogly Studio – Echte Menschen. Echte Begegnungen.</title>
+<meta name="description" content="Boogly Studio ist eine deutsche Social-Media-Brand, die Menschen zusammenbringt – ungefiltert, ungeschönt und immer nah am echten Leben."/>
 <meta property="og:title" content="Boogly Studio"/>
-<meta property="og:description" content="Echte Menschen. Echte Meinungen."/>
+<meta property="og:description" content="Echte Menschen. Echte Begegnungen."/>
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -143,19 +143,53 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
 }
 .statement p .dim{color:var(--muted)}
 
-/* ─── SECTION LABEL ─── */
-.section-label{
-  font-size:11px;font-weight:600;letter-spacing:2px;
-  text-transform:uppercase;color:var(--hint);margin-bottom:20px;
+/* ─── TOPICS MARQUEE ─── */
+.marquee-wrap{
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:18px 0;
+  background:var(--surface);
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:marquee 30s linear infinite;
+  width:max-content;
+}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:12px;
+  padding:0 32px;
+  font-size:13px;font-weight:500;color:var(--muted);
+  white-space:nowrap;
+}
+.marquee-item::after{
+  content:'·';color:var(--accent);font-size:20px;line-height:1;
+}
+
+/* ─── SECTION HEADING ─── */
+.section-heading-wrap{
+  margin-bottom:56px;
+}
+.section-heading-wrap h2{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(32px,5vw,52px);
+  font-weight:700;letter-spacing:-2px;line-height:1.0;
+  margin-bottom:12px;
+}
+.section-heading-wrap p{
+  font-size:16px;color:var(--muted);max-width:500px;
 }
 
 /* ─── FORMAT SECTION ─── */
-.formats-section{padding:0 40px 96px;max-width:1080px;margin:0 auto}
+.formats-section{padding:96px 40px;max-width:1080px;margin:0 auto}
+
+/* Featured format (Ansichtssache) */
 .format-feature{
   display:grid;grid-template-columns:1fr 1fr;gap:48px;
-  align-items:center;margin-top:40px;
+  align-items:center;margin-bottom:24px;
 }
-.format-text{}
 .format-badge{
   display:inline-block;
   background:var(--accent-bg);color:var(--accent);
@@ -163,20 +197,34 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
   font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
   padding:4px 12px;border-radius:20px;margin-bottom:20px;
 }
+.format-badge.soon{
+  background:var(--surface2);color:var(--hint);
+  border-color:var(--border);
+}
 .format-text h2{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(28px,4vw,44px);
   font-weight:700;letter-spacing:-1.5px;line-height:1.1;
   margin-bottom:16px;
 }
-.format-text p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:24px}
-.format-meta{
-  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;
-}
+.format-text p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.format-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
 .meta-pill{
   background:var(--surface2);border:1px solid var(--border);
-  border-radius:20px;padding:6px 14px;
-  font-size:13px;color:var(--muted);
+  border-radius:20px;padding:6px 14px;font-size:13px;color:var(--muted);
+}
+.pilot-theme{
+  display:flex;align-items:center;gap:10px;
+  background:var(--accent-bg);border:1px solid var(--accent-border);
+  border-radius:12px;padding:14px 18px;margin-bottom:28px;
+}
+.pilot-theme-label{
+  font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:var(--accent);white-space:nowrap;
+}
+.pilot-theme-text{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:500;color:var(--text);
 }
 .format-visual{
   background:var(--surface);
@@ -203,57 +251,54 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
 }
 .format-visual p{font-size:13px;color:var(--muted);max-width:220px}
 
-/* ─── TOPICS ─── */
-.topics-section{
-  background:var(--surface);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  padding:64px 40px;
+/* Secondary formats grid */
+.formats-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:20px;margin-top:20px;
 }
-.topics-inner{max-width:1080px;margin:0 auto}
-.topics-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.topic-pill{
-  background:var(--surface2);border:1px solid var(--border);
-  border-radius:30px;padding:9px 18px;
-  font-size:14px;color:var(--text);
-  transition:border-color .15s,color .15s;cursor:default;
-}
-.topic-pill:hover{border-color:var(--border-hover)}
-
-/* ─── WHY SECTION ─── */
-.why-section{padding:96px 40px;max-width:1080px;margin:0 auto}
-.why-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:16px;margin-top:40px;
-}
-.why-card{
+.format-card{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:28px;
+  border-radius:16px;padding:32px;
   transition:border-color .2s;
+  position:relative;overflow:hidden;
 }
-.why-card:hover{border-color:var(--border-hover)}
-.why-num{
+.format-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,245,90,0.04) 0%, transparent 70%);
+  pointer-events:none;
+}
+.format-card:hover{border-color:var(--border-hover)}
+.format-card-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--accent-bg);border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.format-card-icon svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.format-card-icon.dim{background:var(--surface2);border-color:var(--border)}
+.format-card-icon.dim svg{stroke:var(--hint)}
+.format-card h3{
   font-family:'Space Grotesk',sans-serif;
-  font-size:36px;font-weight:700;color:var(--accent);
-  letter-spacing:-1px;margin-bottom:12px;line-height:1;
+  font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:10px;
 }
-.why-card h3{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px;
-}
-.why-card p{font-size:14px;color:var(--muted);line-height:1.65}
+.format-card p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.format-card .format-meta{margin-bottom:0}
 
-/* ─── SOCIAL ─── */
-.social-section{padding:0 40px 64px;max-width:1080px;margin:0 auto}
-.social-row{display:flex;gap:10px;flex-wrap:wrap}
-.social-link{
-  display:flex;align-items:center;gap:8px;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:11px 18px;
-  font-size:14px;color:var(--muted);text-decoration:none;
-  transition:border-color .15s,color .15s;
+/* ─── ÜBER UNS ─── */
+.ueber-uns-section{padding:96px 40px;max-width:1080px;margin:0 auto}
+.ueber-uns-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;margin-top:40px;
 }
-.social-link:hover{border-color:var(--border-hover);color:var(--text)}
-.social-link svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.ueber-uns-stats{display:flex;flex-direction:column;gap:16px}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:24px;
+}
+.stat-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:32px;font-weight:700;color:var(--accent);margin-bottom:6px;
+}
+.stat-desc{font-size:14px;color:var(--muted)}
 
 /* ─── FAQ ─── */
 .faq-section{
@@ -262,11 +307,12 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
   padding:96px 40px;
 }
 .faq-inner{max-width:720px;margin:0 auto}
-.faq-inner .section-label{text-align:center;margin-bottom:40px}
-.faq-item{
-  border-bottom:1px solid var(--border);
-  padding:20px 0;
+.faq-heading{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-1.5px;
+  text-align:center;margin-bottom:48px;
 }
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
 .faq-item:last-child{border-bottom:none}
 .faq-q{
   display:flex;justify-content:space-between;align-items:center;
@@ -300,8 +346,6 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
   font-weight:700;letter-spacing:-1.5px;margin-bottom:12px;
 }
 .apply-header p{font-size:16px;color:var(--muted);line-height:1.7}
-
-/* Form steps */
 .step-indicator{display:flex;align-items:center;gap:0;margin-bottom:40px}
 .step{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500}
 .step-dot{
@@ -309,25 +353,20 @@ hr.section-divide{border:none;border-top:1px solid var(--border);margin:0}
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:700;font-family:'Space Grotesk',sans-serif;
   transition:background .2s,color .2s,border .2s;
-  border:1px solid var(--border);color:var(--hint);
-  flex-shrink:0;
+  border:1px solid var(--border);color:var(--hint);flex-shrink:0;
 }
 .step.active .step-dot{background:var(--accent);color:#0c0c0c;border-color:var(--accent)}
 .step.done .step-dot{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)}
 .step-label{color:var(--hint);transition:color .2s}
 .step.active .step-label{color:var(--text)}
 .step-divider{flex:1;height:1px;background:var(--border);margin:0 12px}
-
 .form-step{display:none}
 .form-step.active{display:block}
-
-/* Fields */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
 .field.no-mb{margin-bottom:0}
 label{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0.3px}
 label .req{color:var(--accent)}
-
 input[type=text],input[type=email],input[type=tel],input[type=number],input[type=url],select,textarea{
   background:var(--surface);
   border:1px solid var(--border);border-radius:9px;
@@ -345,8 +384,6 @@ input:focus,select:focus,textarea:focus{
 select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(240,237,232,0.4)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 select option{background:#1e1e1e;color:var(--text)}
 textarea{height:110px;resize:vertical;line-height:1.6}
-
-/* Checkbox topics */
 .topics-check{display:flex;flex-wrap:wrap;gap:8px}
 .topic-check{position:relative}
 .topic-check input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
@@ -354,14 +391,11 @@ textarea{height:110px;resize:vertical;line-height:1.6}
   cursor:pointer;
   background:var(--surface2);border:1px solid var(--border);
   border-radius:20px;padding:7px 16px;font-size:13px;
-  color:var(--muted);letter-spacing:0;
-  transition:all .15s;
+  color:var(--muted);letter-spacing:0;transition:all .15s;
 }
 .topic-check input:checked+label{
   background:var(--accent-bg);border-color:var(--accent-border);color:var(--accent);
 }
-
-/* Consent */
 .consent-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
 .consent-row input[type=checkbox]{
   width:18px;height:18px;flex-shrink:0;margin-top:2px;
@@ -369,8 +403,6 @@ textarea{height:110px;resize:vertical;line-height:1.6}
 }
 .consent-row label{font-size:13px;color:var(--muted);letter-spacing:0;line-height:1.6}
 .consent-row a{color:var(--accent);text-decoration:none}
-
-/* Nav buttons */
 .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px}
 .btn-back{
   font-family:'Inter',sans-serif;
@@ -389,18 +421,12 @@ textarea{height:110px;resize:vertical;line-height:1.6}
 }
 .btn-next:hover,.btn-submit:hover{opacity:.88;transform:translateY(-1px)}
 .btn-next:disabled,.btn-submit:disabled{opacity:.4;cursor:not-allowed;transform:none}
-
-/* Progress bar */
 .form-progress{
-  height:2px;background:var(--surface2);border-radius:2px;margin-bottom:32px;
-  overflow:hidden;
+  height:2px;background:var(--surface2);border-radius:2px;margin-bottom:32px;overflow:hidden;
 }
 .form-progress-bar{
-  height:100%;background:var(--accent);border-radius:2px;
-  transition:width .4s ease;
+  height:100%;background:var(--accent);border-radius:2px;transition:width .4s ease;
 }
-
-/* Success */
 .apply-success{
   text-align:center;display:none;
   background:var(--surface);border:1px solid var(--accent-border);
@@ -431,9 +457,18 @@ footer{
   font-weight:700;font-size:16px;color:var(--text);text-decoration:none;
 }
 .footer-logo span{color:var(--accent)}
-.footer-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+.footer-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap;align-items:center}
 .footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s}
 .footer-links a:hover{color:var(--text)}
+.footer-social{display:flex;gap:12px}
+.footer-social a{
+  display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  transition:border-color .15s;
+}
+.footer-social a:hover{border-color:var(--border-hover)}
+.footer-social svg{width:14px;height:14px;fill:var(--muted)}
 .footer-copy{
   width:100%;text-align:center;
   font-size:12px;color:var(--hint);
@@ -446,12 +481,13 @@ footer{
   .nav-links{display:none}
   .hero{padding:72px 20px 50px;min-height:80vh}
   .statement{padding:64px 20px}
-  .formats-section,.why-section,.social-section,.apply-section{padding-left:20px;padding-right:20px}
+  .formats-section,.ueber-uns-section,.apply-section{padding-left:20px;padding-right:20px}
   .format-feature{grid-template-columns:1fr;gap:32px}
-  .why-grid{grid-template-columns:1fr}
+  .formats-grid{grid-template-columns:1fr}
+  .ueber-uns-grid{grid-template-columns:1fr;gap:32px}
   .form-row{grid-template-columns:1fr}
   footer{padding:32px 20px;flex-direction:column;align-items:flex-start}
-  .topics-section,.faq-section{padding-left:20px;padding-right:20px}
+  .faq-section{padding-left:20px;padding-right:20px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -465,17 +501,17 @@ footer{
   <a href="#" class="nav-logo">Boogly<span>.</span>Studio</a>
   <ul class="nav-links">
     <li><a href="#formate">Formate</a></li>
-    <li><a href="#mitmachen">Mitmachen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#bewerben" class="nav-cta">Jetzt bewerben</a>
+  <a href="https://youtube.com/@BooglyStudio" target="_blank" rel="noopener" class="nav-cta">▶ Jetzt schauen</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-eyebrow">Neu in Deutschland</div>
-  <h1 class="sg">Echte Menschen.<span class="line2">Echte Meinungen.</span></h1>
-  <p class="hero-sub">Boogly Studio bringt Menschen mit gegensätzlichen Perspektiven zusammen – und lässt sie ehrlich miteinander reden. Kein Skript. Kein Filter.</p>
+  <h1 class="sg">Echte Menschen.<span class="line2">Echte Begegnungen.</span></h1>
+  <p class="hero-sub">Boogly Studio lässt die unterschiedlichsten Menschen aufeinandertreffen – ungefiltert, ungeschönt und immer nah am echten Leben.</p>
   <div class="hero-actions">
     <a href="#bewerben" class="btn-primary">Jetzt bewerben</a>
     <a href="#formate" class="btn-ghost">Formate entdecken</a>
@@ -490,24 +526,54 @@ footer{
 
 <!-- STATEMENT -->
 <section class="statement">
-  <p><span class="dim">Deutschland redet zu viel aneinander vorbei.</span> Wir schaffen den Raum, in dem echte Gespräche passieren – zwischen Menschen die unterschiedlicher kaum sein könnten.</p>
+  <p><span class="dim">Die interessantesten Geschichten passieren nicht im Studio.</span> Sie passieren zwischen echten Menschen – und genau da fangen wir an zu filmen.</p>
 </section>
 
-<hr class="section-divide"/>
+<!-- TOPICS MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track">
+    <span class="marquee-item">Politik &amp; Gesellschaft</span>
+    <span class="marquee-item">Dating &amp; Beziehungen</span>
+    <span class="marquee-item">Geld &amp; Karriere</span>
+    <span class="marquee-item">Glaube &amp; Werte</span>
+    <span class="marquee-item">Ernährung &amp; Lifestyle</span>
+    <span class="marquee-item">Feminismus &amp; Gleichberechtigung</span>
+    <span class="marquee-item">Migration &amp; Identität</span>
+    <span class="marquee-item">Generation &amp; Alter</span>
+    <span class="marquee-item">Bildung &amp; Zukunft</span>
+    <span class="marquee-item">Politik &amp; Gesellschaft</span>
+    <span class="marquee-item">Dating &amp; Beziehungen</span>
+    <span class="marquee-item">Geld &amp; Karriere</span>
+    <span class="marquee-item">Glaube &amp; Werte</span>
+    <span class="marquee-item">Ernährung &amp; Lifestyle</span>
+    <span class="marquee-item">Feminismus &amp; Gleichberechtigung</span>
+    <span class="marquee-item">Migration &amp; Identität</span>
+    <span class="marquee-item">Generation &amp; Alter</span>
+    <span class="marquee-item">Bildung &amp; Zukunft</span>
+  </div>
+</div>
 
-<!-- FORMAT: ANSICHTSSACHE -->
+<!-- FORMATE -->
 <section class="formats-section" id="formate">
-  <p class="section-label">Unsere Formate</p>
+  <div class="section-heading-wrap">
+    <h2 class="sg">Unsere Formate</h2>
+    <p>Drei Formate. Ein Ziel: echte Menschen, echte Momente.</p>
+  </div>
+
+  <!-- ANSICHTSSACHE — Featured -->
   <div class="format-feature">
     <div class="format-text">
-      <span class="format-badge">Bald live</span>
+      <span class="format-badge">Pilot · Bald live</span>
       <h2 class="sg">Ansichtssache</h2>
-      <p>Zwei Seiten, eine Frage, kein Schiedsrichter. Wir bringen Menschen mit gegensätzlichen Überzeugungen zusammen – zu Politik, Gesellschaft, Dating und mehr. Kein Debattierclub. Ein echtes Gespräch.</p>
+      <p>Deutschland redet aneinander vorbei – wir ändern das. Ansichtssache bringt Menschen mit völlig verschiedenen Weltanschauungen zusammen. Zwei Perspektiven. Eine Kamera. Kein Skript.</p>
       <div class="format-meta">
-        <span class="meta-pill">~60 Min. Drehtag</span>
-        <span class="meta-pill">Berlin & online</span>
-        <span class="meta-pill">Alle Themen</span>
-        <span class="meta-pill">Keine Vorkenntnisse nötig</span>
+        <span class="meta-pill">📅 28. Juni 2026</span>
+        <span class="meta-pill">📍 Stuttgart</span>
+        <span class="meta-pill">⏱ 2–3 Stunden</span>
+      </div>
+      <div class="pilot-theme">
+        <span class="pilot-theme-label">Pilot-Thema</span>
+        <span class="pilot-theme-text">Wer zahlt auf dem ersten Date?</span>
       </div>
       <a href="#bewerben" class="btn-primary">Jetzt bewerben</a>
     </div>
@@ -517,69 +583,72 @@ footer{
           <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4"/><circle cx="17" cy="11" r="3"/><path d="M14.3 20.7a4 4 0 0 1 5.4 0"/></svg>
         </div>
         <h3 class="sg">Ansichtssache</h3>
-        <p>Menschen. Gespräche.<br/>Keine Schönrederei.</p>
+        <p>Zwei Seiten.<br/>Ein Gespräch. Kein Filter.</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- TOPICS -->
-<section class="topics-section">
-  <div class="topics-inner">
-    <p class="section-label">Themen</p>
-    <div class="topics-grid">
-      <span class="topic-pill">Politik &amp; Gesellschaft</span>
-      <span class="topic-pill">Dating &amp; Beziehungen</span>
-      <span class="topic-pill">Ernährung &amp; Gesundheit</span>
-      <span class="topic-pill">Glaube &amp; Werte</span>
-      <span class="topic-pill">Geld &amp; Karriere</span>
-      <span class="topic-pill">Generation &amp; Alter</span>
-      <span class="topic-pill">Feminismus &amp; Gleichberechtigung</span>
-      <span class="topic-pill">Migration &amp; Identität</span>
-      <span class="topic-pill">Lifestyle &amp; Konsum</span>
-      <span class="topic-pill">Bildung &amp; Zukunft</span>
+  <!-- UMZINGELT + FORMAT 03 — Secondary Grid -->
+  <div class="formats-grid">
+
+    <!-- UMZINGELT -->
+    <div class="format-card">
+      <span class="format-badge soon">In Entwicklung</span>
+      <div class="format-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
+      </div>
+      <h3 class="sg">Umzingelt</h3>
+      <p>Eine Überzeugung gegen viele. Du stehst einer Gruppe gegenüber, die komplett anderer Meinung ist – und musst dich behaupten. Kannst du sie überzeugen? Hältst du stand?</p>
+      <div class="format-meta">
+        <span class="meta-pill">📍 Stuttgart</span>
+        <span class="meta-pill">⏱ 2–3 Stunden</span>
+        <span class="meta-pill">Alle Themen</span>
+      </div>
     </div>
+
+    <!-- FORMAT 03 -->
+    <div class="format-card">
+      <span class="format-badge soon">Bald bekannt</span>
+      <div class="format-card-icon dim">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h3 class="sg">Format 07 — ?</h3>
+      <p>Wir arbeiten an etwas Neuem. Kein Streit, keine Konfrontation – dafür eine Begegnung, die man so schnell nicht vergisst. Mehr verraten wir noch nicht.</p>
+      <div class="format-meta">
+        <span class="meta-pill">🔒 Details folgen</span>
+        <span class="meta-pill">Coming 2026</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- WHY PARTICIPATE -->
-<section class="why-section" id="mitmachen">
-  <p class="section-label">Warum mitmachen?</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-num">01</div>
-      <h3 class="sg">Deine Stimme zählt</h3>
-      <p>Du musst kein Experte sein. Du brauchst eine Meinung – und den Mut, sie zu vertreten. Genau das wollen wir zeigen.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-num">02</div>
-      <h3 class="sg">Echtes Gespräch</h3>
-      <p>Kein Debattierformat, keine Tricks. Wir schaffen eine Atmosphäre, in der echte Verbindungen entstehen können – auch über Grenzen hinweg.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-num">03</div>
-      <h3 class="sg">Reichweite & Sichtbarkeit</h3>
-      <p>Boogly Studio wächst auf YouTube, Instagram und TikTok. Dein Auftritt wird von echten Menschen gesehen.</p>
-    </div>
-  </div>
-</section>
+<hr class="section-divide"/>
 
-<!-- SOCIAL LINKS -->
-<section class="social-section">
-  <p class="section-label">Folg uns</p>
-  <div class="social-row">
-    <a href="https://youtube.com/@BooglyStudio" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.9.5-5.9s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-      YouTube
-    </a>
-    <a href="https://instagram.com/BooglyStudio" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.1 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-      Instagram
-    </a>
-    <a href="https://tiktok.com/@BooglyStudio" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24"><path d="M19.6 3.3A4.5 4.5 0 0 1 15.1 0h-3.4v15.6a2.6 2.6 0 0 1-2.6 2.2 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 2.6-2.6c.3 0 .5 0 .7.1V9.2a6 6 0 0 0-.7 0A6 6 0 0 0 3 15.2 6 6 0 0 0 9.1 21.2a6 6 0 0 0 6-6V7.8a7.8 7.8 0 0 0 4.5 1.4V5.8a4.5 4.5 0 0 1-4.5-2.5h4.5z"/></svg>
-      TikTok
-    </a>
+<!-- ÜBER UNS -->
+<section class="ueber-uns-section" id="ueber-uns">
+  <div class="ueber-uns-grid">
+    <div>
+      <div class="section-heading-wrap" style="margin-bottom:24px">
+        <h2 class="sg">Wir geben echten<br/>Menschen eine Bøhne.</h2>
+      </div>
+      <p style="font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:16px;">Boogly Studio ist eine deutsche Social-Media-Brand, die Menschen in den Mittelpunkt stellt. Wir glauben, dass die interessantesten Geschichten nicht in Redaktionen entstehen – sondern im echten Leben.</p>
+      <p style="font-size:16px;color:var(--muted);line-height:1.8;">Von Diskussionsformaten bis zu Begegnungen, die unter die Haut gehen: Wir schaffen Raum für Momente, die man so nicht kaufen kann. Ungefiltert. Ungeschönt. Echt.</p>
+    </div>
+    <div class="ueber-uns-stats">
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-desc">Echte Menschen – kein Casting, kein Skript</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-desc">Formate in Entwicklung</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">📍</div>
+        <div class="stat-desc">Produktion in Stuttgart</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -588,11 +657,11 @@ footer{
 <!-- FAQ -->
 <section class="faq-section" id="faq">
   <div class="faq-inner">
-    <p class="section-label" style="text-align:center">Häufige Fragen</p>
+    <h2 class="faq-heading sg">Häufige Fragen</h2>
 
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">
-        <span>Muss ich eine öffentliche Person sein, um teilzunehmen?</span>
+        <span>Muss ich eine öffentliche Person sein?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </div>
       <div class="faq-a">Nein. Wir suchen ausdrücklich Menschen aus allen Lebensbereichen – Studenten, Handwerker, Eltern, Rentner, Aktivisten, Konservative. Deine Perspektive ist das Wichtigste, nicht deine Bekanntheit.</div>
@@ -603,7 +672,7 @@ footer{
         <span>Wie läuft ein Drehtag ab?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </div>
-      <div class="faq-a">Du kommst zu einem festgelegten Ort in Berlin (oder remote), wirst kurz gebrieft und lernst dein Gegenüber kennen. Das Gespräch dauert ca. 60 Minuten und wird professionell gefilmt. Kein Skript, kein Moderator der eingreift.</div>
+      <div class="faq-a">Du kommst zu uns nach Stuttgart. Es gibt ein kurzes Briefing, dann lernst du dein Gegenüber kennen – und los geht's. Der Drehtag dauert in der Regel 2–3 Stunden. Für Verpflegung ist gesorgt, du musst einfach du selbst sein.</div>
     </div>
 
     <div class="faq-item">
@@ -627,7 +696,7 @@ footer{
         <span>Ich habe eine starke Meinung – ist das ein Problem?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </div>
-      <div class="faq-a">Ganz im Gegenteil – genau das suchen wir. Solange du respektvoll bleibst und das Gespräch führen willst (nicht gewinnen), bist du perfect für Ansichtssache.</div>
+      <div class="faq-a">Ganz im Gegenteil – genau das suchen wir. Solange du respektvoll bleibst und das Gespräch führen willst (nicht gewinnen), bist du perfekt før Ansichtssache.</div>
     </div>
 
     <div class="faq-item">
@@ -635,7 +704,7 @@ footer{
         <span>Wo finden die Drehs statt?</span>
         <div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
       </div>
-      <div class="faq-a">Die ersten Drehs finden in Deutschland statt. Wenn du weiter weg wohnst, melde dich trotzdem – wir arbeiten auch mit Remote-Formaten und planen Events in mehreren Städten.</div>
+      <div class="faq-a">Unsere Drehs finden in Stuttgart statt. Wenn du weiter weg wohnst, kein Problem – bewirb dich trotzdem. Wenn dein Profil passt, finden wir gemeinsam einen Weg.</div>
     </div>
 
   </div>
@@ -644,13 +713,12 @@ footer{
 <!-- APPLY FORM -->
 <section class="apply-section" id="bewerben">
   <div class="apply-header">
-    <p class="section-label">Bewerbung</p>
+    <p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-bottom:12px;">Bewerbung</p>
     <h2 class="sg">Mach mit.</h2>
     <p>Wir suchen Menschen mit echten Überzeugungen – egal von welcher Seite. Füll das Formular aus, wir melden uns innerhalb von 5 Werktagen.</p>
   </div>
 
   <div id="apply-form-container">
-    <!-- Step indicator -->
     <div class="step-indicator">
       <div class="step active" id="step-ind-1">
         <div class="step-dot">1</div>
@@ -662,8 +730,6 @@ footer{
         <span class="step-label">Deine Stimme</span>
       </div>
     </div>
-
-    <!-- Progress bar -->
     <div class="form-progress"><div class="form-progress-bar" id="progress-bar" style="width:50%"></div></div>
 
     <!-- STEP 1 -->
@@ -685,7 +751,7 @@ footer{
         </div>
         <div class="field no-mb">
           <label>Wohnort <span class="req">*</span></label>
-          <input type="text" id="f-ort" placeholder="Berlin" required/>
+          <input type="text" id="f-ort" placeholder="Stuttgart" required/>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
@@ -742,16 +808,16 @@ footer{
       </div>
       <div class="field">
         <label>Video-Link (optional)</label>
-        <input type="url" id="f-video" placeholder="z.B. YouTube, Instagram Reel, TikTok…"/>
+        <input type="url" id="f-video" placeholder="z.B. YouTube, Instagram Reel, TikTof…"/>
         <span style="font-size:12px;color:var(--hint);margin-top:4px">Zeig uns wie du dich präsentierst – kein Muss.</span>
       </div>
       <div class="consent-row" style="margin-top:8px">
         <input type="checkbox" id="consent1" required/>
-        <label for="consent1">Ich stimme zu, dass meine Daten zur Bearbeitung meiner Bewerbung gespeichert werden. <a href="/datenschutz">Datenschutzerklärung</a> <span class="req">*</span></label>
+        <label for="consent1">Ich stimme zu, dass meine Daten zur Bearbeitung meiner Bewerbung gespeichert werden. <a href="#" onclick="openModal('datenschutz');return false;">Datenschutzerklärung</a> <span class="req">*</span></label>
       </div>
       <div class="consent-row">
         <input type="checkbox" id="consent2"/>
-        <label for="consent2">Ich möchte über neue Formate und Drehtage informiert werden (optional).</label>
+        <label for="consent2">Ich möchte øber neue Formate und Drehtage informiert werden (optional).</label>
       </div>
       <div class="form-nav" style="margin-top:28px">
         <button class="btn-back" onclick="goStep(1)">&larr; Zurück</button>
@@ -760,7 +826,6 @@ footer{
     </div>
   </div>
 
-  <!-- Success -->
   <div class="apply-success" id="apply-success">
     <div class="success-check">
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
@@ -770,15 +835,76 @@ footer{
   </div>
 </section>
 
+<!-- IMPRESSUM MODAL -->
+<div id="modal-impressum" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);overflow-y:auto;padding:40px 20px;" onclick="if(event.target===this)closeModal('impressum')">
+  <div style="max-width:680px;margin:0 auto;background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:48px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;">Impressum</h2>
+      <button onclick="closeModal('impressum')" style="background:none;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--muted);width:36px;height:36px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="font-size:15px;color:var(--muted);line-height:1.9;">
+      <p style="font-weight:600;color:var(--text);margin-bottom:4px;">Angaben gemäß § 5 TMG</p>
+      <p>[VORNAME NACHNAME]<br/>[STRAßE UND HAUSNUMMER]<br/>[PLZ] Stuttgart<br/>Deutschland</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:4px;">Kontakt</p>
+      <p>E-Mail: hallo@booglystudio.com</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:4px;">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</p>
+      <p>[VORNAME NACHNAME]<br/>[STRAßE UND HAUSNUMMER]<br/>[PLZ] Stuttgart</p>
+      <br/>
+      <p style="font-size:13px;color:var(--hint);">Boogly Studio ist ein nicht-eingetragenes Einzelunternehmen. Keine Umsatzsteuer-ID vorhanden (Kleinunternehmerregelung §19 UStG).</p>
+    </div>
+  </div>
+</div>
+
+<!-- DATENSCHUTZ MODAL -->
+<div id="modal-datenschutz" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);overflow-y:auto;padding:40px 20px;" onclick="if(event.target===this)closeModal('datenschutz')">
+  <div style="max-width:680px;margin:0 auto;background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:48px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;">Datenschutzerklärung</h2>
+      <button onclick="closeModal('datenschutz')" style="background:none;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--muted);width:36px;height:36px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="font-size:15px;color:var(--muted);line-height:1.9;">
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">1. Verantwortlicher</p>
+      <p>Verantwortlich im Sinne der DSGVO: [VORNAME NACHNAME], [STRAßE], [PLZ] Stuttgart. Kontakt: hallo@booglystudio.com</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">2. Bewerbungsformular</p>
+      <p>Daten werden verschlüsselt an Formspree Inc. (USA) übermittelt und ausschließlich zur Bearbeitung deiner Bewerbung genutzt. Nicht an Dritte weitergegeben. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">3. Hosting</p>
+      <p>Diese Website wird über Vercel Inc. (USA) gehostet. Beim Aufrufen werden automatisch Server-Logfiles gespeichert (IP, Browser, Uhrzeit). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4. Externe Links</p>
+      <p>Wir linken auf YouTube, Instagram und TikTok. Für deren Datenschutzpraktiken sind die jeweiligen Anbieter verantwortlich.</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">5. Deine Rechte</p>
+      <p>Auskunft, Berichtigung, Löschung, Widerspruch: hallo@booglystudio.com</p>
+      <br/>
+      <p style="font-size:13px;color:var(--hint);">Stand: Juni 2026</p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <a href="#" class="footer-logo">Boogly<span>.</span>Studio</a>
+  <div class="footer-social">
+    <a href="https://youtube.com/@BooglyStudio" target="_blank" rel="noopener" title="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.9.5-5.9s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+    </a>
+    <a href="https://instagram.com/BooglyStudio" target="_blank" rel="noopener" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12c0-3.2 0-3.6.1-4.8C2.4 3.9 4 2.3 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.1 8.3 0 8.7 0 12c0 3.3 0 3.7.1 4.9.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24c3.3 0 3.7 0 4.9-.1 4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9 0-3.3 0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+    </a>
+    <a href="https://tiktok.com/@BooglyStudio" target="_blank" rel="noopener" title="TikTok">
+      <svg viewBox="0 0 24 24"><path d="M19.6 3.3A4.5 4.5 0 0 1 15.1 0h-3.4v15.6a2.6 2.6 0 0 1-2.6 2.2 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 2.6-2.6c.3 0 .5 0 .7.1V9.2a6 6 0 0 0-.7 0A6 6 0 0 0 3 15.2 6 6 0 0 0 9.1 21.2a6 6 0 0 0 6-6V7.8a7.8 7.8 0 0 0 4.5 1.4V5.8a4.5 4.5 0 0 1-4.5-2.5h4.5z"/></svg>
+    </a>
+  </div>
   <ul class="footer-links">
-    <li><a href="mailto:hallo@boogly.studio">Kontakt</a></li>
-    <li><a href="/impressum">Impressum</a></li>
-    <li><a href="/datenschutz">Datenschutz</a></li>
+    <li><a href="mailto:hallo@booglystudio.com">Kontakt</a></li>
+    <li><a href="#" onclick="openModal('impressum');return false;">Impressum</a></li>
+    <li><a href="#" onclick="openModal('datenschutz');return false;">Datenschutz</a></li>
   </ul>
-  <p class="footer-copy">© 2025 Boogly Studio · Alle Rechte vorbehalten</p>
+  <p class="footer-copy">© 2026 Boogly Studio · Alle Rechte vorbehalten</p>
 </footer>
 
 <script>
@@ -832,7 +958,10 @@ function validateStep2(){
 function submitForm(){
   if(!validateStep2())return;
 
-  // Collect all data
+  const btn=document.querySelector('.btn-submit');
+  btn.disabled=true;
+  btn.textContent='Wird gesendet…';
+
   const topics=[...document.querySelectorAll('#topics-check input:checked')].map(c=>c.value).join(', ');
   const data={
     vorname:   document.getElementById('f-vorname').value.trim(),
@@ -853,23 +982,39 @@ function submitForm(){
     datum:     new Date().toLocaleDateString('de-DE'),
   };
 
-  // Submit to Formspree (replace YOUR_FORM_ID with your actual ID)
-  const formspreeId = 'xqeobrdq';
-
-  fetch('https://formspree.io/f/'+formspreeId,{
+  fetch('https://formspree.io/f/xqeobrdq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(data)
   })
-  .then(r=>{
-    if(r.ok){showSuccess();}
-    else{alert('Es gab einen Fehler. Bitte versuche es erneut.');}
+  .then(r=>r.json().then(body=>({ok:r.ok,body})))
+  .then(({ok,body})=>{
+    if(ok){
+      showSuccess();
+    } else {
+      btn.disabled=false;
+      btn.textContent='Bewerbung absenden →';
+      const msg=(body&&body.error)||'Bitte überprüfe deine Eingaben und versuche es erneut.';
+      showFormError(msg);
+    }
   })
   .catch(()=>{
-    // Fallback: show success anyway so user isn't stuck, log error
-    console.error('Formspree not configured yet');
-    showSuccess();
+    btn.disabled=false;
+    btn.textContent='Bewerbung absenden →';
+    showFormError('Netzwerkfehler – bitte prüfe deine Internetverbindung und versuche es erneut.');
   });
+}
+
+function showFormError(msg){
+  let el=document.getElementById('form-error');
+  if(!el){
+    el=document.createElement('div');
+    el.id='form-error';
+    el.style.cssText='margin-top:16px;padding:14px 18px;background:rgba(229,70,70,0.1);border:1px solid rgba(229,70,70,0.3);border-radius:9px;font-size:14px;color:#f87171;line-height:1.5;';
+    document.querySelector('.form-nav').insertAdjacentElement('afterend',el);
+  }
+  el.textContent=msg;
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function showSuccess(){
@@ -879,7 +1024,18 @@ function showSuccess(){
   s.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-// ─── SMOOTH SCROLL for internal links ───
+// ─── MODALS ───
+function openModal(id){
+  document.getElementById('modal-'+id).style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById('modal-'+id).style.display='none';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal('impressum');closeModal('datenschutz');}});
+
+// ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const target=document.querySelector(a.getAttribute('href'));
