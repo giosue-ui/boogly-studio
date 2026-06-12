@@ -445,6 +445,9 @@ textarea{height:110px;resize:vertical;line-height:1.6}
 }
 .apply-success p{font-size:15px;color:var(--muted)}
 
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+
 /* ─── FOOTER ─── */
 footer{
   border-top:1px solid var(--border);
@@ -874,22 +877,34 @@ footer{
       <p style="font-weight:600;color:var(--text);margin-bottom:8px;">3. Google Fonts</p>
       <p>Diese Website lädt Schriftarten über den Dienst Google Fonts von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Dabei wird deine IP-Adresse beim Seitenaufruf an Google übermittelt. Die Einbindung erfolgt auf Grundlage unseres berechtigten Interesses an einer einheitlichen Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO). Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--accent);">policies.google.com/privacy</a></p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4. Bewerbungsformular (Formspree)</p>
-      <p>Über das Bewerbungsformular erhobene Daten (Name, E-Mail, Telefon, Wohnort, Social-Media-Profile, Freitexte) werden verschlüsselt an Formspree Inc., 101 Avenue of the Americas, New York, NY 10013, USA übermittelt und ausschließlich zur Bearbeitung deiner Bewerbung verwendet. Eine Weitergabe an Dritte erfolgt nicht. Daten werden nach Abschluss des Bewerbungsverfahrens gelöscht, spätestens nach 6 Monaten. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertragsverhältnisses).</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4. Bewerbungsformular &amp; Datenverarbeitung</p>
+      <p>Wenn du dich über das Bewerbungsformular bewirbst, werden folgende Daten erhoben: Vor- und Nachname, Alter, Wohnort, E-Mail-Adresse, Telefonnummer, Social-Media-Profile (Instagram, TikTok, YouTube), Informationen zu deinem Content-Format sowie Freitexte (Über dich, Motivation, Themen). Diese Daten werden ausschließlich zur Prüfung und Bearbeitung deiner Bewerbung genutzt.</p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">5. Kontakt per E-Mail</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4a. Formspree (E-Mail-Weiterleitung)</p>
+      <p>Die Formulardaten werden verschlüsselt an Formspree Inc., 101 Avenue of the Americas, New York, NY 10013, USA übermittelt. Formspree sendet uns eine E-Mail-Benachrichtigung über deine Bewerbung. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO). Datenschutzerklärung von Formspree: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener" style="color:var(--accent);">formspree.io/legal/privacy-policy</a></p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4b. Make.com (Automatisierung)</p>
+      <p>Zur automatisierten Verarbeitung deiner Bewerbung setzen wir Make (ehemals Integromat) ein, angeboten von Celonis SE, Theresienstraße 6, 80333 München, Deutschland (EU-Serverstandort: Frankfurt). Make empfängt deine Bewerbungsdaten (Name, E-Mail, Social-Media-Profile, Bewerbungstext) unmittelbar nach dem Absenden des Formulars und leitet sie an unser CRM-System weiter. Make verarbeitet die Daten ausschließlich als Auftragsverarbeiter in unserem Auftrag gemäß Art. 28 DSGVO. Datenschutzerklärung von Make: <a href="https://www.make.com/en/privacy-notice" target="_blank" rel="noopener" style="color:var(--accent);">make.com/en/privacy-notice</a></p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4c. Airtable (Bewerberdatenbank / CRM)</p>
+      <p>Deine Bewerbungsdaten (Name, E-Mail, Social-Media-Profile, Bewerbungstext, Bewerbungsdatum) werden in einer Airtable-Datenbank gespeichert. Airtable wird betrieben von Formagrid Inc. (Airtable), 799 Market Street, San Francisco, CA 94103, USA. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln. Airtable verarbeitet die Daten als Auftragsverarbeiter in unserem Auftrag (Art. 28 DSGVO). Deine Daten in der Datenbank werden nach Abschluss des Bewerbungsverfahrens, spätestens nach 12 Monaten, gelöscht. Auf Wunsch löschen wir deine Daten jederzeit vorzeitig – schreib uns dazu an <a href="mailto:hallo@booglystudio.com" style="color:var(--accent);">hallo@booglystudio.com</a>. Datenschutzerklärung von Airtable: <a href="https://www.airtable.com/privacy" target="_blank" rel="noopener" style="color:var(--accent);">airtable.com/privacy</a></p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">Rechtsgrundlage für die Bewerbungsverarbeitung</p>
+      <p>Rechtsgrundlage für die Verarbeitung deiner Bewerbungsdaten ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung eines Vertragsverhältnisses) sowie deine ausdrückliche Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die du durch Ankreuzen der Einwilligungserklärung im Formular erteilst. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</p>
+      <br/>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">6. Kontakt per E-Mail</p>
       <p>Wenn du uns per E-Mail kontaktierst, werden deine Angaben (E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung deiner Anfrage und für mögliche Rückfragen bei uns gespeichert. Diese Daten geben wir nicht ohne deine Einwilligung weiter. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">6. Externe Links / Social Media</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">7. Externe Links / Social Media</p>
       <p>Diese Website enthält Links zu YouTube (Google LLC), Instagram und TikTok. Beim Klick auf diese Links verlässt du unsere Website. Für die Datenverarbeitung auf den verlinkten Seiten sind die jeweiligen Anbieter verantwortlich. Wir haben keinen Einfluss auf deren Inhalte und Datenschutzpraktiken.</p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">7. Cookies &amp; Tracking</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">8. Cookies &amp; Tracking</p>
       <p>Diese Website setzt keine Cookies und verwendet kein Tracking (keine Analytics, kein Retargeting).</p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">8. Deine Rechte</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">9. Deine Rechte</p>
       <p>Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu jederzeit an: <a href="mailto:hallo@booglystudio.com" style="color:var(--accent);">hallo@booglystudio.com</a></p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">9. Beschwerderecht</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">10. Beschwerderecht</p>
       <p>Du hast das Recht, dich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren. In Baden-Württemberg ist das der Landesbeauftragte für den Datenschutz und die Informationsfreiheit (LfDI BW), Lautenschlagerstraße 20, 70173 Stuttgart, <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener" style="color:var(--accent);">www.baden-wuerttemberg.datenschutz.de</a></p>
       <br/>
       <p style="font-size:13px;color:var(--hint);">Stand: Juni 2026</p>
@@ -994,6 +1009,21 @@ function submitForm(){
     datum:     new Date().toLocaleDateString('de-DE'),
   };
 
+  // CRM: Make.com sofort feuern (parallel, unabhängig von Formspree)
+  fetch('https://hook.eu1.make.com/ar6lf3qmbjuwoi2pi1c1eedyykej8n72',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      name: data.vorname+' '+data.nachname,
+      email: data.email,
+      instagram: data.instagram||'',
+      tiktok: data.tiktok||'',
+      youtube: data.video||'',
+      format: data.format,
+      message: [data.bio,data.motivation,data.themen].filter(Boolean).join('\n\n')
+    })
+  }).catch(()=>{});
+
   fetch('https://formspree.io/f/xqeobrdq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -1002,20 +1032,6 @@ function submitForm(){
   .then(r=>r.json().then(body=>({ok:r.ok,body})))
   .then(({ok,body})=>{
     if(ok){
-      // CRM: Airtable via Make.com (silent, non-blocking)
-      fetch('https://hook.eu1.make.com/ar6lf3qmbjuwoi2pi1c1eedyykej8n72',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          name: data.vorname+' '+data.nachname,
-          email: data.email,
-          instagram: data.instagram||'',
-          tiktok: data.tiktok||'',
-          youtube: data.video||'',
-          format: data.format,
-          message: [data.bio,data.motivation,data.themen].filter(Boolean).join('\n\n')
-        })
-      }).catch(()=>{});
       showSuccess();
     } else {
       btn.disabled=false;
@@ -1044,10 +1060,25 @@ function showFormError(msg){
 }
 
 function showSuccess(){
-  document.getElementById('apply-form-container').style.display='none';
-  const s=document.getElementById('apply-success');
-  s.style.display='block';
-  s.scrollIntoView({behavior:'smooth',block:'center'});
+  // Overlay erstellen
+  const overlay=document.createElement('div');
+  overlay.id='success-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(12,12,12,0.95);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .35s ease;';
+  overlay.innerHTML=`
+    <div style="max-width:480px;width:100%;text-align:center;">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(200,245,90,0.12);border:1.5px solid rgba(200,245,90,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:popIn .4s .15s both cubic-bezier(.34,1.56,.64,1);">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8f55a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.5px;color:#c8f55a;margin-bottom:12px;">Bewerbung eingegangen!</h2>
+      <p style="font-size:16px;color:rgba(240,237,232,0.6);line-height:1.7;margin-bottom:32px;">Danke – wir haben alles erhalten und melden uns innerhalb von 5 Werktagen per E-Mail bei dir.</p>
+      <button onclick="document.getElementById('success-overlay').remove();document.getElementById('apply-form-container').style.display='none';" style="background:#c8f55a;color:#0c0c0c;border:none;border-radius:10px;padding:14px 32px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Zurück zur Startseite</button>
+    </div>`;
+  document.body.appendChild(overlay);
+  document.body.style.overflow='hidden';
+  overlay.querySelector('button').addEventListener('click',()=>{
+    document.body.style.overflow='';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
 }
 
 // ─── MODALS ───
