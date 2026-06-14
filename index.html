@@ -635,10 +635,6 @@ footer{
           <span class="meta-pill">📍 Stuttgart</span>
           <span class="meta-pill">⏱ 2–3 Stunden</span>
         </div>
-        <div class="pilot-theme">
-          <span class="pilot-theme-label">Pilot-Thema</span>
-          <span class="pilot-theme-text">Wer zahlt auf dem ersten Date?</span>
-        </div>
       </div>
     </div>
 
@@ -928,8 +924,8 @@ footer{
           <input type="text" id="f-beruf" placeholder="Lehrerin"/>
         </div>
         <div class="field no-mb">
-          <label>Instagram (optional)</label>
-          <input type="text" id="f-insta" placeholder="@lena.mueller"/>
+          <label>Instagram <span style="color:#c8f135">*</span></label>
+          <input type="text" id="f-insta" placeholder="@lena.mueller" required/>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
@@ -1120,7 +1116,7 @@ function goStep(n){
 }
 
 function validateStep1(){
-  const fields=['f-format','f-vorname','f-nachname','f-alter','f-ort','f-email','f-tel'];
+  const fields=['f-format','f-vorname','f-nachname','f-alter','f-ort','f-email','f-tel','f-insta'];
   let ok=true;
   fields.forEach(id=>{
     const el=document.getElementById(id);
@@ -1187,7 +1183,9 @@ function submitForm(){
       tiktok: data.tiktok||'',
       youtube: data.video||'',
       format: formatShort,
-      message: [data.bio,data.motivation,data.themen].filter(Boolean).join('\n\n')
+      bio: data.bio,
+      motivation: data.motivation,
+      themen: data.themen
     })
   })
   .then(()=>{ showSuccess(); })
