@@ -1091,6 +1091,7 @@ function toggleFaq(el){
 
 // ─── FORM STEPS ───
 function goStep(n){
+  saveFormState();
   if(n===2&&!validateStep1())return;
   document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-'+n).classList.add('active');
@@ -1125,6 +1126,14 @@ function validateStep2(){
   if(!document.getElementById('consent1').checked){
     alert('Bitte stimme der Datenschutzerklärung zu.');return false;
   }
+  // YouTube-URL-Validierung
+  const videoVal=document.getElementById('f-video').value.trim();
+  if(videoVal&&!/^https?:\/\//i.test(videoVal)){
+    alert('Bitte gib die YouTube-URL vollständig ein, z.B. https://youtube.com/...');
+    document.getElementById('f-video').style.borderColor='rgba(229,70,70,0.6)';
+    return false;
+  }
+  if(videoVal)document.getElementById('f-video').style.borderColor='';
   return true;
 }
 
@@ -1191,6 +1200,7 @@ function showFormError(msg){
 }
 
 function showSuccess(){
+  sessionStorage.removeItem('boogly_form');
   // Overlay erstellen
   const overlay=document.createElement('div');
   overlay.id='success-overlay';
@@ -1222,6 +1232,27 @@ function closeModal(id){
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal('impressum');closeModal('datenschutz');}});
+
+// ─── FORM PERSISTENZ ───
+const _FIELDS=['f-format','f-vorname','f-nachname','f-alter','f-ort','f-email','f-tel','f-insta','f-tiktok','f-video','f-bio','f-motivation'];
+function saveFormState(){
+  const d={};
+  _FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)d[id]=el.value;});
+  d._topics=[...document.querySelectorAll('#topics-check input:checked')].map(c=>c.value);
+  d._consent2=!!document.getElementById('consent2')?.checked;
+  try{sessionStorage.setItem('boogly_form',JSON.stringify(d));}catch(e){}
+}
+function restoreFormState(){
+  try{
+    const raw=sessionStorage.getItem('boogly_form');
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    _FIELDS.forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.value=d[id];});
+    if(d._topics){document.querySelectorAll('#topics-check input').forEach(cb=>{cb.checked=d._topics.includes(cb.value);});}
+    if(d._consent2){const c=document.getElementById('consent2');if(c)c.checked=true;}
+  }catch(e){}
+}
+document.addEventListener('DOMContentLoaded',restoreFormState);
 
 // ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
