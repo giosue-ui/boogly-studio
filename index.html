@@ -979,6 +979,11 @@ footer{
         <input type="checkbox" id="consent2"/>
         <label for="consent2">Ich möchte über neue Formate und Drehtage informiert werden (optional).</label>
       </div>
+      <!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus -->
+      <div style="position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;" aria-hidden="true">
+        <label for="f-website">Website (nicht ausfüllen)</label>
+        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"/>
+      </div>
       <div class="form-nav" style="margin-top:28px">
         <button class="btn-back" onclick="goStep(1)">&larr; Zurück</button>
         <button class="btn-submit" onclick="submitForm()">Bewerbung absenden &rarr;</button>
@@ -1141,6 +1146,8 @@ function validateStep2(){
 
 function submitForm(){
   if(!validateStep2())return;
+  // Honeypot: Bots füllen dieses Feld aus → still abbrechen
+  if(document.getElementById('f-website').value){showSuccess();return;}
 
   const btn=document.querySelector('.btn-submit');
   btn.disabled=true;
