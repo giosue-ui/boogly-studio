@@ -1,3 +1,16 @@
+// Rate-Limiting: max. 5 Bewerbungen pro IP pro Stunde
+const _rateMap = new Map();
+function isRateLimited(ip) {
+  const now = Date.now();
+  const WINDOW = 60 * 60 * 1000;
+  const LIMIT = 5;
+  const hits = (_rateMap.get(ip) || []).filter(t => now - t < WINDOW);
+  if (hits.length >= LIMIT) return true;
+  hits.push(now);
+  _rateMap.set(ip, hits);
+  return false;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://boogly.studio');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -13,6 +26,14 @@ export default async function handler(req, res) {
 
   // Honeypot: Bot hat das versteckte Feld ausgefüllt
   if (website) return res.status(200).json({ ok: true });
+
+  // Rate-Limiting
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim()
+    || req.socket?.remoteAddress
+    || 'unknown';
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ error: 'Zu viele Bewerbungen. Bitte warte eine Stunde.' });
+  }
 
   // Pflichtfelder prüfen
   if (!name || !email || !instagram || !format || !bio || !motivation || !themen) {
@@ -53,7 +74,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Airtable fehlgeschlagen' });
     }
 
-    // 2. Brevo: Bestätigungsmail senden (Template #1 = Anmeldebestätigung)
+    // 2. Brevo: Bestätigungsmail senden
     const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
