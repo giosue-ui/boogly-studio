@@ -9,7 +9,7 @@
 <meta property="og:description" content="Echte Menschen. Echte Begegnungen."/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://booglystudio.com/og.png"/>
-<meta property="og:image:width" content="1200"/>
+<meta property="og:image:width" content="1200"/
 <meta property="og:image:height" content="1200"/>
 <link rel="icon" href="/og.png" type="image/png"/>
 <link rel="apple-touch-icon" href="/og.png"/>
@@ -1164,8 +1164,7 @@ function submitForm(){
   const formatShort = data.format.split('·')[0].split('–')[0].trim();
 
   // CRM: Make.com feuern → Bestätigung zeigen sobald Daten angekommen
-  fetch('https://hook.eu1.make.com/ar6lf3qmbjuwoi2pi1c1eedyykej8n72',{
-    method:'POST',
+fetch('/api/apply',{    method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
       name: data.vorname+' '+data.nachname,
@@ -1176,7 +1175,8 @@ function submitForm(){
       format: formatShort,
       bio: data.bio,
       motivation: data.motivation,
-      themen: data.themen
+      themen: data.themen,
+              website: data.website||''
     })
   })
   .then(()=>{ showSuccess(); })
