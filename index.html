@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ä<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8"/>
@@ -1157,9 +1157,6 @@ function submitForm(){
     datum:     new Date().toLocaleDateString('de-DE'),
   };
 
-  // Airtable-kompatibler Format-Wert (kürzt auf den Formatnamen vor dem ·)
-  const formatShort = data.format.split('·')[0].split('–')[0].trim();
-
   // CRM: Make.com feuern → Bestätigung zeigen sobald Daten angekommen
 fetch('/api/apply',{    method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -1169,7 +1166,7 @@ fetch('/api/apply',{    method:'POST',
       instagram: data.instagram||'',
       tiktok: data.tiktok||'',
       youtube: data.video||'',
-      format: formatShort,
+      format: data.format,
       bio: data.bio,
       motivation: data.motivation,
       themen: data.themen,
