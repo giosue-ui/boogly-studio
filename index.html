@@ -1134,7 +1134,6 @@ function validateStep2(){
 
 function submitForm(){
   if(!validateStep2())return;
-  // Honeypot: Bots füllen dieses Feld aus → still abbrechen
   if(document.getElementById('f-website').value){showSuccess();return;}
 
   const btn=document.querySelector('.btn-submit');
@@ -1142,46 +1141,37 @@ function submitForm(){
   btn.textContent='Wird gesendet…';
 
   const topics=[...document.querySelectorAll('#topics-check input:checked')].map(c=>c.value).join(', ');
-  const data={
-    vorname:   document.getElementById('f-vorname').value.trim(),
-    nachname:  document.getElementById('f-nachname').value.trim(),
-    alter:     document.getElementById('f-alter').value,
-    ort:       document.getElementById('f-ort').value.trim(),
+  const payload={
+    name:      document.getElementById('f-vorname').value.trim()+' '+document.getElementById('f-nachname').value.trim(),
     email:     document.getElementById('f-email').value.trim(),
-    tel:       document.getElementById('f-tel').value.trim(),
-    beruf:     document.getElementById('f-beruf').value.trim(),
     instagram: document.getElementById('f-insta').value.trim(),
     tiktok:    document.getElementById('f-tiktok').value.trim(),
+    youtube:   document.getElementById('f-video').value.trim(),
+    format:    document.getElementById('f-format').value,
     bio:       document.getElementById('f-bio').value.trim(),
     motivation:document.getElementById('f-motivation').value.trim(),
     themen:    topics,
-    video:     document.getElementById('f-video').value.trim(),
-    newsletter:document.getElementById('consent2').checked?'Ja':'Nein',
-    format:    document.getElementById('f-format').value,
-    datum:     new Date().toLocaleDateString('de-DE'),
+    website:   document.getElementById('f-website').value,
   };
 
-  // CRM: Make.com feuern → Bestätigung zeigen sobald Daten angekommen
-fetch('/api/apply',{    method:'POST',
+  fetch('/api/apply',{
+    method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      name: data.vorname+' '+data.nachname,
-      email: data.email,
-      instagram: data.instagram||'',
-      tiktok: data.tiktok||'',
-      youtube: data.video||'',
-      format: data.format,
-      bio: data.bio,
-      motivation: data.motivation,
-      themen: data.themen,
-              website: data.website||''
-    })
+    body:JSON.stringify(payload)
   })
-  .then(()=>{ showSuccess(); })
-  .catch(()=>{ showSuccess(); }); // auch bei Netzwerkfehler bestätigen
-
+  .then(r=>r.json())
+  .then(d=>{
+    if(d.ok){showSuccess();}
+    else{
+      btn.disabled=false;btn.textContent='Bewerbung absenden →';
+      showFormError(d.error||'Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
+    }
+  })
+  .catch(()=>{
+    btn.disabled=false;btn.textContent='Bewerbung absenden →';
+    showFormError('Netzwerkfehler – bitte prüfe deine Verbindung und versuche es erneut.');
+  });
 }
-
 function showFormError(msg){
   let el=document.getElementById('form-error');
   if(!el){
