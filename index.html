@@ -7,7 +7,7 @@
 <meta name="description" content="Boogly Studio ist eine deutsche Social-Media-Brand, die Menschen zusammenbringt – ungefiltert, ungeschönt und immer nah am echten Leben."/>
 <meta property="og:title" content="Boogly Studio"/>
 <meta property="og:description" content="Echte Menschen. Echte Begegnungen."/>
-<meta property="og:type" content="website"/
+<meta property="og:type" content="website"
 <meta property="og:image" content="https://booglystudio.com/og.png"/>
 <meta property="og:image:width" content="1200"
 <meta property="og:image:height" content="1200"/>
@@ -1250,32 +1250,21 @@ function restoreFormState(){
 async function loadCastings(){
   try{
     const res=await fetch('/api/castings');
-    const {castings}=await res.json();
+    const data=await res.json();
     const sel=document.getElementById('f-format');
-    const init=sel.querySelector('option[value="Initiativbewerbung"]');
     while(sel.options.length>1)sel.remove(1);
-    castings.forEach(name=>{
+    (data.castings||[]).forEach(name=>{
       const opt=document.createElement('option');
       opt.value=name;opt.textContent=name;
-      sel.insertBefore(opt,init||null);
-    });
-    if(!sel.querySelector('option[value="Initiativbewerbung"]')){
-      const opt=document.createElement('option');
-      opt.value='Initiativbewerbung';
-      opt.textContent='Initiativbewerbung – für zukünftige Formate';
       sel.appendChild(opt);
-    }
+    });
+    const init=document.createElement('option');
+    init.value='Initiativbewerbung';
+    init.textContent='Initiativbewerbung – für zukünftige Formate';
+    sel.appendChild(init);
   }catch(e){console.error('loadCastings:',e);}
 }
-document.addEventListener('DOMContentLoaded',()=>{restoreFormState();loadCastings();});
-
-// ─── SMOOTH SCROLL ───
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const target=document.querySelector(a.getAttribute('href'));
-    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
-  });
-});
+loadCastings();
 </script>
 </body>
 </html>
