@@ -9,7 +9,7 @@
 <meta property="og:description" content="Echte Menschen. Echte Begegnungen."/>
 <meta property="og:type" content="website"/
 <meta property="og:image" content="https://booglystudio.com/og.png"/>
-<meta property="og:image:width" content="1200"/
+<meta property="og:image:width" content="1200"
 <meta property="og:image:height" content="1200"/>
 <link rel="icon" href="/og.png" type="image/png"/
 <link rel="apple-touch-icon" href="/og.png"/>
@@ -429,7 +429,7 @@ input:focus,select:focus,textarea:focus{
 select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(240,237,232,0.4)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 select option{background:#1e1e1e;color:var(--text)}
 textarea{height:110px;resize:vertical;line-height:1.6}
-.topics-check{display:flex;flex-wrap:wrap;gap:8px}
+.topics-check{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .topic-check{position:relative}
 .topic-check input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
 .topic-check label{
@@ -1121,8 +1121,7 @@ function validateStep2(){
      !document.getElementById('f-motivation').value.trim()){
     alert('Bitte füll die Pflichtfelder aus.');return false;
   }
-  const topics=[...document.querySelectorAll('#topics-check input:checked')];
-  if(!topics.length){alert('Bitte wähle mindestens ein Thema aus.');return false;}
+  const topics=[...document.querySelectorAll('#topics-check{alert('Bitte wähle mindestens ein Thema aus.');return false;}
   if(!document.getElementById('consent1').checked){
     alert('Bitte stimme der Datenschutzerklärung zu.');return false;
   }
