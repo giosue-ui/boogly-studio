@@ -893,12 +893,7 @@ footer{
         <label>Für welchen Dreh bewirbst du dich? <span class="req">*</span></label>
         <select id="f-format" required>
           <option value="" disabled selected>Bitte auswählen …</option>
-          <optgroup label="Aktuelle Castings">
-            <option value="Ansichtssache – 28. Juni 2026 (Wer zahlt auf dem ersten Date?)">Ansichtssache · 28. Juni 2026 – Wer zahlt auf dem ersten Date?</option>
-          </optgroup>
-          <optgroup label="Allgemein">
-            <option value="Initiativbewerbung">Initiativbewerbung – für zukünftige Formate</option>
-          </optgroup>
+          <option value="Initiativbewerbung">Initiativbewerbung – für zukünftige Formate</option>
         </select>
       </div>
       <div class="field" style="margin-top:14px">
@@ -1252,7 +1247,27 @@ function restoreFormState(){
     if(d._consent2){const c=document.getElementById('consent2');if(c)c.checked=true;}
   }catch(e){}
 }
-document.addEventListener('DOMContentLoaded',restoreFormState);
+async function loadCastings(){
+  try{
+    const res=await fetch('/api/castings');
+    const {castings}=await res.json();
+    const sel=document.getElementById('f-format');
+    const init=sel.querySelector('option[value="Initiativbewerbung"]');
+    while(sel.options.length>1)sel.remove(1);
+    castings.forEach(name=>{
+      const opt=document.createElement('option');
+      opt.value=name;opt.textContent=name;
+      sel.insertBefore(opt,init||null);
+    });
+    if(!sel.querySelector('option[value="Initiativbewerbung"]')){
+      const opt=document.createElement('option');
+      opt.value='Initiativbewerbung';
+      opt.textContent='Initiativbewerbung – für zukünftige Formate';
+      sel.appendChild(opt);
+    }
+  }catch(e){console.error('loadCastings:',e);}
+}
+document.addEventListener('DOMContentLoaded',()=>{restoreFormState();loadCastings();});
 
 // ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
