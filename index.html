@@ -1121,7 +1121,8 @@ function validateStep2(){
      !document.getElementById('f-motivation').value.trim()){
     alert('Bitte füll die Pflichtfelder aus.');return false;
   }
-  const topics=[...document.querySelectorAll('#topics-check{alert('Bitte wähle mindestens ein Thema aus.');return false;}
+  const topics=[...document.querySelectorAll('.topics-check input[type=checkbox]:checked')];
+  if(!topics.length){alert('Bitte wähle mindestens ein Thema aus.');return false;}
   if(!document.getElementById('consent1').checked){
     alert('Bitte stimme der Datenschutzerklärung zu.');return false;
   }
