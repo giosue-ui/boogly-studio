@@ -291,11 +291,10 @@
   <div class="casting-list">
     <div class="casting-card">
       <div class="meta">
-        <div class="casting-badge"><span class="dot"></span>Offen · Aktuelles Casting</div>
-        <h3>Ansichtssache – Wer zahlt auf dem ersten Date?</h3>
-        <p class="desc">Zwei Parteien, zwei Haltungen, eine Frage. Wir bringen Menschen mit gegensätzlichen Standpunkten an einen Tisch — ehrlich und auf Augenhöhe.</p>
+        <div class="casting-badge"><span class="dot"></span>Casting offen</div>
+        <h3>Wir casten gerade für neue Formate</h3>
+        <p class="desc">Zwei Parteien, zwei Haltungen, eine Frage. Wir bringen Menschen mit gegensätzlichen Standpunkten an einen Tisch — ehrlich und auf Augenhöhe. Wähle im Formular dein aktuelles Format und bewirb dich.</p>
         <div class="facts">
-          <span>📅 28. Juni 2026</span>
           <span>📍 Stuttgart</span>
           <span>⏳ Bewerbung laufend</span>
         </div>
@@ -353,12 +352,7 @@
         <label>Für welchen Dreh bewirbst du dich? <span class="req">*</span></label>
         <select id="f-format" required>
           <option value="" disabled selected>Bitte auswählen …</option>
-          <optgroup label="Aktuelle Castings">
-            <option value="Ansichtssache – 28. Juni 2026 (Wer zahlt auf dem ersten Date?)">Ansichtssache · 28. Juni 2026 – Wer zahlt auf dem ersten Date?</option>
-          </optgroup>
-          <optgroup label="Allgemein">
-            <option value="Initiativbewerbung">Initiativbewerbung – für zukünftige Formate</option>
-          </optgroup>
+          <!-- Castings werden dynamisch aus /api/castings geladen (loadCastings) -->
         </select>
       </div>
       <div class="field" style="margin-top:14px">
@@ -531,10 +525,7 @@
       <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4a. Brevo (E-Mail-Versand)</p>
       <p>Für den automatisierten Versand von Bestätigungs- und Annahme-E-Mails nutzen wir Brevo (ehemals Sendinblue), angeboten von Brevo SAS, 55 rue d'Amsterdam, 75008 Paris, Frankreich. Brevo ist ein EU-ansässiger Anbieter und verarbeitet deine E-Mail-Adresse sowie deinen Namen ausschließlich auf europäischen Servern – ein Drittlandtransfer findet nicht statt. Brevo verarbeitet die Daten als Auftragsverarbeiter in unserem Auftrag gemäß Art. 28 DSGVO. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Datenschutzerklärung von Brevo: <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener" style="color:var(--accent);">brevo.com/de/legal/privacypolicy</a></p>
       <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4b. Make.com (Automatisierung)</p>
-      <p>Zur automatisierten Verarbeitung deiner Bewerbung setzen wir Make (ehemals Integromat) ein, angeboten von Celonis SE, Theresienstraße 6, 80333 München, Deutschland (EU-Serverstandort: Frankfurt). Make empfängt deine Bewerbungsdaten (Name, E-Mail, Social-Media-Profile, Bewerbungstext) unmittelbar nach dem Absenden des Formulars und leitet sie an unser CRM-System weiter. Make verarbeitet die Daten ausschließlich als Auftragsverarbeiter in unserem Auftrag gemäß Art. 28 DSGVO. Datenschutzerklärung von Make: <a href="https://www.make.com/en/privacy-notice" target="_blank" rel="noopener" style="color:var(--accent);">make.com/en/privacy-notice</a></p>
-      <br/>
-      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4c. Airtable (Bewerberdatenbank / CRM)</p>
+      <p style="font-weight:600;color:var(--text);margin-bottom:8px;">4b. Airtable (Bewerberdatenbank / CRM)</p>
       <p>Deine Bewerbungsdaten (Name, E-Mail, Social-Media-Profile, Bewerbungstext, Bewerbungsdatum) werden in einer Airtable-Datenbank gespeichert. Airtable wird betrieben von Formagrid Inc. (Airtable), 799 Market Street, San Francisco, CA 94103, USA. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln. Airtable verarbeitet die Daten als Auftragsverarbeiter in unserem Auftrag (Art. 28 DSGVO). Deine Daten in der Datenbank werden nach Abschluss des Bewerbungsverfahrens, spätestens nach 12 Monaten, gelöscht. Auf Wunsch löschen wir deine Daten jederzeit vorzeitig – schreib uns dazu an <a href="mailto:hallo@boogly.studio" style="color:var(--accent);">hallo@boogly.studio</a>. Datenschutzerklärung von Airtable: <a href="https://www.airtable.com/privacy" target="_blank" rel="noopener" style="color:var(--accent);">airtable.com/privacy</a></p>
       <br/>
       <p style="font-weight:600;color:var(--text);margin-bottom:8px;">Rechtsgrundlage für die Bewerbungsverarbeitung</p>
@@ -594,6 +585,7 @@
 
 // ─── FORM STEPS ───
 function goStep(n){
+  saveFormState();
   if(n===2&&!validateStep1())return;
   document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-'+n).classList.add('active');
@@ -660,9 +652,6 @@ function submitForm(){
     datum:     new Date().toLocaleDateString('de-DE'),
   };
 
-  // Format-Wert auf den Formatnamen vor dem · / – kürzen
-  const formatShort = data.format.split('·')[0].split('–')[0].trim();
-
   // Eigener Endpoint /api/apply (verarbeitet serverseitig – Make.com wird nicht mehr genutzt)
   fetch('/api/apply',{
     method:'POST',
@@ -673,7 +662,7 @@ function submitForm(){
       instagram: data.instagram||'',
       tiktok: data.tiktok||'',
       youtube: data.video||'',
-      format: formatShort,
+      format: data.format,
       bio: data.bio,
       motivation: data.motivation,
       themen: data.themen,
@@ -733,6 +722,47 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal('impress
     });
   });
 })();
+
+// ─── FORM-PERSISTENZ (sessionStorage) ───
+const _FIELDS=['f-format','f-vorname','f-nachname','f-alter','f-ort','f-email','f-tel','f-insta','f-tiktok','f-video','f-bio','f-motivation'];
+function saveFormState(){
+  const d={};
+  _FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)d[id]=el.value;});
+  d._topics=[...document.querySelectorAll('#topics-check input:checked')].map(c=>c.value);
+  d._consent2=!!document.getElementById('consent2')?.checked;
+  try{sessionStorage.setItem('boogly_form',JSON.stringify(d));}catch(e){}
+}
+function restoreFormState(){
+  try{
+    const raw=sessionStorage.getItem('boogly_form');
+    if(!raw)return;
+    const d=JSON.parse(raw);
+    _FIELDS.forEach(id=>{const el=document.getElementById(id);if(el&&d[id])el.value=d[id];});
+    if(d._topics){document.querySelectorAll('#topics-check input').forEach(cb=>{cb.checked=d._topics.includes(cb.value);});}
+    if(d._consent2){const c=document.getElementById('consent2');if(c)c.checked=true;}
+  }catch(e){}
+}
+document.getElementById('apply-form-container').addEventListener('input',saveFormState);
+
+// ─── DYNAMISCHE CASTINGS (aus /api/castings) ───
+async function loadCastings(){
+  try{
+    const res=await fetch('/api/castings');
+    const data=await res.json();
+    const sel=document.getElementById('f-format');
+    while(sel.options.length>1)sel.remove(1);
+    (data.castings||[]).forEach(name=>{
+      const opt=document.createElement('option');
+      opt.value=name;opt.textContent=name;
+      sel.appendChild(opt);
+    });
+    const init=document.createElement('option');
+    init.value='Initiativbewerbung';
+    init.textContent='Initiativbewerbung – für zukünftige Formate';
+    sel.appendChild(init);
+  }catch(e){console.error('loadCastings:',e);}
+}
+loadCastings().then(restoreFormState);
 
 // ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
